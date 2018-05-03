@@ -17,63 +17,73 @@ let slideshow = function(time, selector) {
 		return false
 	}
 
-	let next = function(){
+	let hideOldSlide = function(){
 		let $active = $slideshowContainer.querySelector('.active');
 		if ($active) $active.classList.remove('active');
+	}
 
+	let showNewSlide = function(){
+		$slides[currentSlideNumber].classList.add("active")
+	}
+
+	let next = function(){
+		hideOldSlide()
 		currentSlideNumber++;
 
 		if (currentSlideNumber === $slides.length){
 			currentSlideNumber = 0;
 		}
-		
-		$slides[currentSlideNumber].classList.add("active")
+		showNewSlide()
 	}
 
 	let prev = function(){
-		let $active = $slideshowContainer.querySelector('.active');
-		if ($active) $active.classList.remove('active');
-
+		hideOldSlide()
 		currentSlideNumber--;
 
 		if (currentSlideNumber < 0){
 			currentSlideNumber = $slides.length -1;
 		}
 		
-		$slides[currentSlideNumber].classList.add("active")
+		showNewSlide()
 	}
 
-	let jumpOne = function(){
-		stop()
-		imageOne.classList.add("active")
-		imageTwo.classList.remove("active")
-		imageThree.classList.remove("active")
-		imageFour.classList.remove("active")
+	let jump = function(slideNum){
+		hideOldSlide()
+		currentSlideNumber = slideNum;
+		showNewSlide()
 	}
 
-	let jumpTwo = function(){
-		stop()
-		imageOne.classList.remove("active")
-		imageTwo.classList.add("active")
-		imageThree.classList.remove("active")
-		imageFour.classList.remove("active")
-	}
+	// let jumpOne = function(){
+	// 	stop()
+	// 	imageOne.classList.add("active")
+	// 	imageTwo.classList.remove("active")
+	// 	imageThree.classList.remove("active")
+	// 	imageFour.classList.remove("active")
+	// }
 
-	let jumpThree = function(){
-		stop()
-		imageOne.classList.remove("active")
-		imageTwo.classList.remove("active")
-		imageThree.classList.add("active")
-		imageFour.classList.remove("active")
-	}
+	// let jumpTwo = function(){
+	// 	stop()
+	// 	imageOne.classList.remove("active")
+	// 	imageTwo.classList.add("active")
+	// 	imageThree.classList.remove("active")
+	// 	imageFour.classList.remove("active")
+	// }
 
-	let jumpFour = function(){
-		stop()
-		imageOne.classList.remove("active")
-		imageTwo.classList.remove("active")
-		imageThree.classList.remove("active")
-		imageFour.classList.add("active")
-	}
+	// let jumpThree = function(){
+	// 	stop()
+	// 	imageOne.classList.remove("active")
+	// 	imageTwo.classList.remove("active")
+	// 	imageThree.classList.add("active")
+	// 	imageFour.classList.remove("active")
+	// }
+
+	// let jumpFour = function(){
+	// 	stop()
+	// 	imageOne.classList.remove("active")
+	// 	imageTwo.classList.remove("active")
+	// 	imageThree.classList.remove("active")
+	// 	imageFour.classList.add("active")
+	// }
 
 
 

@@ -16,63 +16,74 @@ var slideshow = function slideshow(time, selector) {
 		return false;
 	}
 
-	var next = function next() {
+	var hideOldSlide = function hideOldSlide() {
 		var $active = $slideshowContainer.querySelector('.active');
 		if ($active) $active.classList.remove('active');
+	};
 
+	var showNewSlide = function showNewSlide() {
+		$slides[currentSlideNumber].classList.add("active");
+	};
+
+	var next = function next() {
+		hideOldSlide();
 		currentSlideNumber++;
 
 		if (currentSlideNumber === $slides.length) {
 			currentSlideNumber = 0;
 		}
-
-		$slides[currentSlideNumber].classList.add("active");
+		showNewSlide();
 	};
 
 	var prev = function prev() {
-		var $active = $slideshowContainer.querySelector('.active');
-		if ($active) $active.classList.remove('active');
-
+		hideOldSlide();
 		currentSlideNumber--;
 
 		if (currentSlideNumber < 0) {
 			currentSlideNumber = $slides.length - 1;
 		}
 
-		$slides[currentSlideNumber].classList.add("active");
+		showNewSlide();
 	};
 
-	var jumpOne = function jumpOne() {
-		stop();
-		imageOne.classList.add("active");
-		imageTwo.classList.remove("active");
-		imageThree.classList.remove("active");
-		imageFour.classList.remove("active");
+	var jump = function jump(slideNum) {
+		hideOldSlide();
+		currentSlideNumber = slideNum;
+		showNewSlide();
 	};
 
-	var jumpTwo = function jumpTwo() {
-		stop();
-		imageOne.classList.remove("active");
-		imageTwo.classList.add("active");
-		imageThree.classList.remove("active");
-		imageFour.classList.remove("active");
-	};
+	// let jumpOne = function(){
+	// 	stop()
+	// 	imageOne.classList.add("active")
+	// 	imageTwo.classList.remove("active")
+	// 	imageThree.classList.remove("active")
+	// 	imageFour.classList.remove("active")
+	// }
 
-	var jumpThree = function jumpThree() {
-		stop();
-		imageOne.classList.remove("active");
-		imageTwo.classList.remove("active");
-		imageThree.classList.add("active");
-		imageFour.classList.remove("active");
-	};
+	// let jumpTwo = function(){
+	// 	stop()
+	// 	imageOne.classList.remove("active")
+	// 	imageTwo.classList.add("active")
+	// 	imageThree.classList.remove("active")
+	// 	imageFour.classList.remove("active")
+	// }
 
-	var jumpFour = function jumpFour() {
-		stop();
-		imageOne.classList.remove("active");
-		imageTwo.classList.remove("active");
-		imageThree.classList.remove("active");
-		imageFour.classList.add("active");
-	};
+	// let jumpThree = function(){
+	// 	stop()
+	// 	imageOne.classList.remove("active")
+	// 	imageTwo.classList.remove("active")
+	// 	imageThree.classList.add("active")
+	// 	imageFour.classList.remove("active")
+	// }
+
+	// let jumpFour = function(){
+	// 	stop()
+	// 	imageOne.classList.remove("active")
+	// 	imageTwo.classList.remove("active")
+	// 	imageThree.classList.remove("active")
+	// 	imageFour.classList.add("active")
+	// }
+
 
 	var start = function start() {
 		stop();
