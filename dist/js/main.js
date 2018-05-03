@@ -48,6 +48,7 @@ var slideshow = function slideshow(time, selector) {
 
 	var jump = function jump(slideNum) {
 		hideOldSlide();
+		stop();
 		currentSlideNumber = slideNum;
 		showNewSlide();
 	};
@@ -101,10 +102,7 @@ var slideshow = function slideshow(time, selector) {
 		stop: stop,
 		start: start,
 		prev: prev,
-		jumpOne: jumpOne,
-		jumpTwo: jumpTwo,
-		jumpThree: jumpThree,
-		jumpFour: jumpFour
+		jump: jump
 	};
 };
 

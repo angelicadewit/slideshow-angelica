@@ -49,6 +49,7 @@ let slideshow = function(time, selector) {
 
 	let jump = function(slideNum){
 		hideOldSlide()
+		stop()
 		currentSlideNumber = slideNum;
 		showNewSlide()
 	}
@@ -103,10 +104,7 @@ let slideshow = function(time, selector) {
 		stop: stop,
 		start: start,
 		prev: prev,
-		jumpOne: jumpOne,
-		jumpTwo: jumpTwo,
-		jumpThree: jumpThree,
-		jumpFour: jumpFour,
+		jump: jump,
 	}
 
 }
